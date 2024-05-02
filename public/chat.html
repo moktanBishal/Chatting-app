@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chat Room</title>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+
+</head>
+
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/register.html">Register</a>
+    <a href="./chat.html">Chat</a>
+    <a href="/about.html">About</a>
+  </nav>
+  <h1>Chat Room</h1>
+
+  <div>
+    <input type="text" id="nicknameInput" placeholder="Enter your nickname">
+    <button id="setNicknameButton">Set Nickname</button>
+  </div>
+
+  <div>
+    <input type="text" id="roomNameInput" placeholder="Enter room name">
+    <button id="createRoomButton">Create Room</button>
+    <button id="joinRoomButton">Join Room</button>
+  </div>
+
+  <div id="roomContainer">
+    <button id="getRoomsButton">Get Existing Rooms</button>
+    <select id="roomList"></select>
+  </div>
+
+  <div id="chat">
+    <!-- Chat messages will be displayed here -->
+  </div>
+
+  <div>
+    <input type="text" id="messageInput" placeholder="Type your message">
+    <button id="sendMessageButton">Send Message</button>
+  </div>
+
+  <script src="./script.js"></script>
+ 
+</body>
+
+</html>
