@@ -40,3 +40,49 @@ nav a {
 .chat-content {
   margin-left: 10px;
 }
+
+.tokenSection {
+  max-width: 700px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background-color: #34495e;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: #ecf0f1;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #2c3e50;
+}
+
+.accountAddress {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.tokenBalance {
+  font-weight: bold;
+  color: #b6e09ff5;
+}
+
+#loginButton {
+  background-color: #3498db;
+  color: #ecf0f1;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#loginButton:hover {
+  background-color: #2980b9;
+}
