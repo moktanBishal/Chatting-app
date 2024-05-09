@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const web3 = new Web3(window.ethereum);
-
+  const loginButton = document.getElementById('loginButton');
+  const metaData = document.getElementById('metaData');
+  const newWallet = document.getElementById("newWallet");
+  metaData.style.display = 'none';
+  newWallet.style.display = 'none';
   let accounts = [];
-
+  
   // Replace with your Capstone contract address
   const contractAddress = '0x38b89654B8107332A4f6AE66D3205009463DA58D';
 
@@ -214,7 +218,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   const connectMetaMask = async () => {
-    const loginButton = document.getElementById('loginButton');
+    
       try {
           // Request account access if needed
           await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -230,18 +234,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Check if the balance is greater than 0 (indicating the account holds tokens)
             if (parseInt(balance) > 0) {
+                metaData.style.display = 'block';
                 console.log('The connected account is a token holder.');
                 await displayTokenDetails();
                 await displayTokenBalances();
-                loginButton.textContent = 'Displaying token information!';
+                
             } else {
                 console.log('The connected account is not a token holder.');
-                const newWallet = document.getElementById("newWallet");
+                newWallet.style.display = 'block';
                 const tokenHolder = document.createElement('h3');
-                tokenHolder.innerHTML = `My account address: ${accounts[0]}`;
+                tokenHolder.innerHTML = `Please register to view this details and have access to chat feature.`;
                 newWallet.appendChild(tokenHolder);
-                alert('Connected account is not a token holder.');
             }
+            loginButton.style.display = 'none';
           }
       } catch (error) {
           console.error('Error connecting with MetaMask:', error);

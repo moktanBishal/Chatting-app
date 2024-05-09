@@ -307,6 +307,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 document.getElementById('loginButton').style.display = 'none';         
             } else {
                 console.log('The connected account is not a token holder.');
+                document.getElementById('chatFeature').style.display = 'none';
+                document.getElementById('chatRoom').style.display = 'none';
                 alert('Connected account is not a token holder.');
             }
           }
