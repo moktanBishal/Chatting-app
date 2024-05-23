@@ -22,41 +22,6 @@
   <button id="loginButton">Connect with Metamask</button>
   <div id="newWallet"></div>
   <div id="bug"></div>
-  <script>
-    const loginButton = document.getElementById('loginButton');
-    const newWallet = document.getElementById('newWallet');
-
-    const connectMetaMask = async () => {
-      loginButton.style.display = 'none';
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const accounts = await window.ethereum.request({ method: 'eth_accounts'});
-      
-      if (!newWallet.querySelector('h3')) {
-        const tokenHolder = document.createElement('h3');
-        tokenHolder.innerHTML = `My account address: ${accounts[0]}`;
-        newWallet.appendChild(tokenHolder);
-      }
-      
-      if (!newWallet.querySelector('button')) {
-        const register = document.createElement('button');
-        register.id = 'registerBtn';
-        register.textContent = 'Register';
-        newWallet.appendChild(register);
-
-        document.getElementById('registerBtn').addEventListener('click', registerClickHandler);
-      }
-    }
-    const registerClickHandler = () => {
-      const bug = document.getElementById('bug');
-      const p = document.createElement('p');
-      p.textContent = "This should store the address in some database.";
-      bug.appendChild(p);
-
-      document.getElementById('registerBtn').removeEventListener('click', registerClickHandler);
-    };
-
-    loginButton.addEventListener('click', connectMetaMask);
-    
-  </script>
+  <script src="./account.js"></script>
 </body>
 </html>

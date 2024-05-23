@@ -21,5 +21,10 @@ const messageSchema = new mongoose.Schema({
   timestamp: { type: Date, default: Date.now },
 });
 const Message = mongoose.model('Message', messageSchema);
+
+// Defining account address for metamask
+const accountSchema = new mongoose.Schema({address: String});
+const Account = mongoose.model('Account', accountSchema);
+
 // Export the models and any necessary database functions
-module.exports = { Room, Message };
+module.exports = { Room, Message, Account };

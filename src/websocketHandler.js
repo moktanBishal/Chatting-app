@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-const { Room, Message } = require('./databaseOperations');
+const { Room, Message, Account } = require('./databaseOperations');
 
 // Maintain a map to store connected clients and their nicknames
 const connectedClients = new Map();
@@ -9,6 +9,9 @@ const chatRoomMessages = new Map();
 
 // Maintain a map to store the room each client is connected to
 const clientRooms = new Map();
+
+// Maintain a map to store the wallet address
+const accountAddresses = new Map();
 
 let wss;
 // Handle WebSocket connection
@@ -141,6 +144,26 @@ async function handleMessage(ws, message) {
                 ws.send(JSON.stringify({ type: 'error', message: 'Failed to save messages' }));
                 return;
             }
+        }
+
+        // Handle address for token verification
+        if (data.type === 'token') {
+            const newAccountAddress = data.accountAddress;
+            if (accountAddresses.has(newAccountAddress)) {
+                ws.send(JSON.stringify({ type: 'systemMessage',
+                    message: `Account address ${newAccountAddress} already exist.`
+                }));
+                return;
+            }
+            const newAccount = new Account({address : newAccountAddress});
+            try {
+                await newAccount.save();
+                ws.send(JSON.stringify({type: 'systemMessage', message: `New account ${newAccount} created.`}));
+                accountAddresses.set(ws, newAccountAddress);
+            } catch (error) {
+                console.error('Error adding wallet addresses.', error);
+            }
+            return;
         }
     } catch (error) {
         console.error('Error handling message:', error);
